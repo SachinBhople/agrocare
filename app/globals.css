@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --background: #070a08;
+  --foreground: #eaf7ef;
+
+  /* Brand palette (agro greens + warm accents) */
+  --agro-900: #07140c;
+  --agro-800: #0b1f12;
+  --agro-700: #0f2b18;
+  --agro-600: #13401f;
+  --agro-500: #1d7a3a;
+  --agro-400: #2fb85a;
+  --agro-300: #67d98b;
+  --agro-200: #b7f2c8;
+
+  --earth-600: #8a5a2b;
+  --earth-500: #b8743a;
+
+  --sun-500: #f7c948;
+  --sun-400: #ffd86b;
+
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.14);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-agro-900: var(--agro-900);
+  --color-agro-800: var(--agro-800);
+  --color-agro-700: var(--agro-700);
+  --color-agro-600: var(--agro-600);
+  --color-agro-500: var(--agro-500);
+  --color-agro-400: var(--agro-400);
+  --color-agro-300: var(--agro-300);
+  --color-agro-200: var(--agro-200);
+
+  --color-earth-600: var(--earth-600);
+  --color-earth-500: var(--earth-500);
+  --color-sun-500: var(--sun-500);
+  --color-sun-400: var(--sun-400);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #070a08;
+    --foreground: #eaf7ef;
+  }
+}
+
+body {
+  background:
+    radial-gradient(900px 500px at 20% 5%, rgba(47, 184, 90, 0.22), transparent 55%),
+    radial-gradient(700px 420px at 85% 20%, rgba(247, 201, 72, 0.14), transparent 55%),
+    radial-gradient(900px 520px at 60% 90%, rgba(183, 242, 200, 0.10), transparent 55%),
+    linear-gradient(180deg, var(--agro-900), #040605 85%);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(247, 201, 72, 0.28);
+}
+
+@utility glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+}

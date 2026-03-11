@@ -1,0 +1,54 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1F12"/>
+      <stop offset="0.55" stop-color="#0A140C"/>
+      <stop offset="1" stop-color="#070A08"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFD86B"/>
+      <stop offset="1" stop-color="#F7C948"/>
+    </linearGradient>
+    <linearGradient id="field1" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#2FB85A" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#1D7A3A" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="field2" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#13401F" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#0F2B18" stop-opacity="0.8"/>
+    </linearGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+
+  <!-- soft sun -->
+  <circle cx="1540" cy="230" r="140" fill="url(#sun)" opacity="0.16" filter="url(#blur)"/>
+  <circle cx="1540" cy="230" r="86" fill="url(#sun)" opacity="0.20" filter="url(#blur)"/>
+
+  <!-- distant hills -->
+  <path d="M0 520C220 440 430 470 630 520C870 580 1080 580 1320 520C1530 466 1710 470 1920 540V1080H0V520Z" fill="#0F2B18" opacity="0.55"/>
+  <path d="M0 560C260 500 520 520 740 585C930 642 1110 640 1320 585C1540 520 1720 520 1920 590V1080H0V560Z" fill="#13401F" opacity="0.55"/>
+
+  <!-- fields -->
+  <path d="M0 680C260 620 520 650 760 720C1000 792 1260 800 1520 740C1670 705 1790 705 1920 730V1080H0V680Z" fill="url(#field2)"/>
+  <path d="M0 740C320 690 610 720 860 790C1140 870 1420 880 1700 820C1770 805 1840 800 1920 805V1080H0V740Z" fill="url(#field1)" opacity="0.92"/>
+
+  <!-- crop rows -->
+  <g opacity="0.22" stroke="#B7F2C8" stroke-width="2">
+    <path d="M-40 920C360 820 760 820 1160 920C1500 1005 1760 1025 1960 1018"/>
+    <path d="M-40 970C360 880 760 880 1160 970C1500 1042 1760 1060 1960 1052"/>
+    <path d="M-40 870C360 770 760 770 1160 870C1500 962 1760 988 1960 980"/>
+  </g>
+
+  <!-- minimal tree silhouettes -->
+  <g opacity="0.35" fill="#07140C">
+    <path d="M280 650C250 650 232 626 240 602C248 580 276 570 296 586C312 556 356 566 356 602C356 632 332 650 304 650H280Z"/>
+    <rect x="292" y="650" width="12" height="54" rx="6"/>
+    <path d="M520 630C492 630 476 608 484 586C492 566 516 556 536 570C552 544 592 552 592 584C592 612 570 630 544 630H520Z"/>
+    <rect x="532" y="630" width="11" height="52" rx="5.5"/>
+  </g>
+</svg>
+
