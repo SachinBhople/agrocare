@@ -14,6 +14,7 @@ const WHATSAPP_SERVICES_URL = `https://wa.me/${WHATSAPP_E164}?text=${encodeURICo
 const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
+  { label: "Benefits", href: "#benefits" },
   { label: "Services", href: WHATSAPP_SERVICES_URL },
   { label: "Contact", href: "#contact" },
 ] as const;
