@@ -6,7 +6,7 @@ import { BadgePercent, Gift, ShieldCheck } from "lucide-react";
 const WHATSAPP_E164 = "918079932208";
 
 const plans = [
-  { amount: 300, claim: 10000, accent: "from-agro-400/35 via-white/[0.06] to-transparent" },
+  { amount: 300, claim: 1000, accent: "from-agro-400/35 via-white/[0.06] to-transparent" },
   { amount: 500, claim: 2500, accent: "from-sun-500/30 via-white/[0.06] to-transparent" },
   { amount: 1000, claim: 5000, accent: "from-earth-500/28 via-white/[0.06] to-transparent" },
 ] as const;

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Mail, Phone, Send, User } from "lucide-react";
+import { Mail, Phone, Send, User, MapPin } from "lucide-react";
 
 import { cn } from "@/app/lib/utils";
 
@@ -56,7 +56,7 @@ export default function Contact() {
 
   const defaultValues = useMemo<FormValues>(
     () => ({ name: "", email: "", phone: "", message: "" }),
-    [],
+    []
   );
 
   const {
@@ -71,6 +71,7 @@ export default function Contact() {
 
   const onSubmit = async (values: FormValues) => {
     setSent(false);
+
     const text = [
       "Hello Agrocare,",
       "",
@@ -81,9 +82,13 @@ export default function Contact() {
       "",
       `Message: ${values.message}`,
     ].join("\n");
-    const url = `https://wa.me/${WHATSAPP_E164}?text=${encodeURIComponent(text)}`;
+
+    const url = `https://wa.me/${WHATSAPP_E164}?text=${encodeURIComponent(
+      text
+    )}`;
 
     window.open(url, "_blank", "noopener,noreferrer");
+
     await new Promise((r) => setTimeout(r, 350));
 
     reset(defaultValues);
@@ -96,148 +101,154 @@ export default function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="grid gap-8 lg:grid-cols-2 lg:items-start"
         >
+          {/* Left Section */}
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/70 backdrop-blur">
               Contact
               <span className="text-white/40">•</span>
               Let’s talk
             </div>
+
             <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
               Get in touch with Agrocare
             </h2>
-            <p className="mt-3 max-w-xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
+
+            <p className="mt-3 max-w-xl text-base leading-7 text-white/70 sm:text-lg">
               Share your requirement—products, insurance, or grocery delivery.
               We’ll respond with the fastest, most reliable option for your
               location.
             </p>
 
             <div className="mt-7 grid gap-3">
+
+              {/* Email */}
               <div className="glass rounded-2xl p-4">
-                <div className="text-xs font-semibold text-white/70">
-                  Email
+                <div className="text-xs font-semibold text-white/70 flex items-center gap-2">
+                  <Mail className="size-4" /> Email
                 </div>
                 <div className="mt-1 text-sm font-medium text-white">
                   support@agrocaresolution.in
                 </div>
               </div>
+
+              {/* Phone */}
               <div className="glass rounded-2xl p-4">
-                <div className="text-xs font-semibold text-white/70">
-                  Phone
+                <div className="text-xs font-semibold text-white/70 flex items-center gap-2">
+                  <Phone className="size-4" /> Phone
                 </div>
                 <div className="mt-1 text-sm font-medium text-white">
                   +91 80799 32208
                 </div>
               </div>
+
+              {/* Address */}
+              <div className="glass rounded-2xl p-4">
+                <div className="text-xs font-semibold text-white/70 flex items-center gap-2">
+                  <MapPin className="size-4" /> Address
+                </div>
+                <div className="mt-1 text-sm font-medium text-white leading-relaxed">
+                  Plot no 469/5179 <br />
+                  Gangotri Nagar Lane 3(o) <br />
+                  Sisupalgarh Bhubaneswar <br />
+                  Odisha 751002
+                </div>
+              </div>
+
             </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute -inset-6 -z-10 rounded-[32px] bg-gradient-to-br from-agro-400/15 via-transparent to-sun-500/10 blur-2xl" />
-            <div className="glass rounded-[28px] p-6 sm:p-8 shadow-[0_28px_90px_rgba(0,0,0,0.5)]">
-              <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <Field
-                    label="Name"
-                    icon={<User className="size-4" />}
-                    error={errors.name?.message}
-                  >
-                    <input
-                      {...register("name")}
-                      placeholder="Your name"
-                      className={cn(
-                        "h-12 w-full rounded-2xl border bg-white/[0.06] pl-10 pr-3 text-sm text-white placeholder:text-white/35 outline-none backdrop-blur",
-                        "border-white/10 focus:border-white/15",
-                      )}
-                    />
-                  </Field>
+          {/* Right Section (Form) */}
+          <div className="glass rounded-[28px] p-6 sm:p-8">
+            <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
 
-                  <Field
-                    label="Email"
-                    icon={<Mail className="size-4" />}
-                    error={errors.email?.message}
-                  >
-                    <input
-                      {...register("email")}
-                      placeholder="you@example.com"
-                      className={cn(
-                        "h-12 w-full rounded-2xl border bg-white/[0.06] pl-10 pr-3 text-sm text-white placeholder:text-white/35 outline-none backdrop-blur",
-                        "border-white/10 focus:border-white/15",
-                      )}
-                    />
-                  </Field>
-                </div>
+              <div className="grid gap-4 sm:grid-cols-2">
 
                 <Field
-                  label="Phone"
-                  icon={<Phone className="size-4" />}
-                  error={errors.phone?.message}
+                  label="Name"
+                  icon={<User className="size-4" />}
+                  error={errors.name?.message}
                 >
                   <input
-                    {...register("phone")}
-                    placeholder="+91 ..."
+                    {...register("name")}
+                    placeholder="Your name"
                     className={cn(
-                      "h-12 w-full rounded-2xl border bg-white/[0.06] pl-10 pr-3 text-sm text-white placeholder:text-white/35 outline-none backdrop-blur",
-                      "border-white/10 focus:border-white/15",
+                      "h-12 w-full rounded-2xl border bg-white/[0.06] pl-10 pr-3 text-sm text-white placeholder:text-white/35 outline-none",
+                      "border-white/10"
                     )}
                   />
                 </Field>
 
                 <Field
-                  label="Message"
-                  icon={<Send className="size-4" />}
-                  error={errors.message?.message}
+                  label="Email"
+                  icon={<Mail className="size-4" />}
+                  error={errors.email?.message}
                 >
-                  <textarea
-                    {...register("message")}
-                    placeholder="Tell us what you need (products / insurance / groceries)…"
-                    rows={5}
+                  <input
+                    {...register("email")}
+                    placeholder="you@example.com"
                     className={cn(
-                      "w-full resize-none rounded-2xl border bg-white/[0.06] pl-10 pr-3 py-3 text-sm text-white placeholder:text-white/35 outline-none backdrop-blur",
-                      "border-white/10 focus:border-white/15",
+                      "h-12 w-full rounded-2xl border bg-white/[0.06] pl-10 pr-3 text-sm text-white placeholder:text-white/35 outline-none",
+                      "border-white/10"
                     )}
                   />
                 </Field>
 
-                <div className="mt-1 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="text-xs text-white/55">
-                    By submitting, you agree to be contacted by our team.
-                  </div>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    disabled={isSubmitting}
-                    type="submit"
-                    className={cn(
-                      "inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold",
-                      "bg-gradient-to-r from-agro-400 to-sun-500 text-agro-900",
-                      "shadow-[0_18px_55px_rgba(247,201,72,0.20)] transition hover:brightness-110",
-                      "disabled:cursor-not-allowed disabled:opacity-60",
-                    )}
-                  >
-                    {isSubmitting ? "Sending..." : "Send message"}
-                    <Send className="size-4" />
-                  </motion.button>
-                </div>
+              </div>
 
-                {sent ? (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-2 rounded-2xl border border-white/10 bg-white/5 p-3 text-sm text-white/80"
-                  >
-                    Message sent. We’ll get back to you shortly.
-                  </motion.div>
-                ) : null}
-              </form>
-            </div>
+              <Field
+                label="Phone"
+                icon={<Phone className="size-4" />}
+                error={errors.phone?.message}
+              >
+                <input
+                  {...register("phone")}
+                  placeholder="+91..."
+                  className={cn(
+                    "h-12 w-full rounded-2xl border bg-white/[0.06] pl-10 pr-3 text-sm text-white placeholder:text-white/35 outline-none",
+                    "border-white/10"
+                  )}
+                />
+              </Field>
+
+              <Field
+                label="Message"
+                icon={<Send className="size-4" />}
+                error={errors.message?.message}
+              >
+                <textarea
+                  {...register("message")}
+                  rows={5}
+                  placeholder="Tell us what you need..."
+                  className={cn(
+                    "w-full rounded-2xl border bg-white/[0.06] pl-10 pr-3 py-3 text-sm text-white placeholder:text-white/35 outline-none",
+                    "border-white/10"
+                  )}
+                />
+              </Field>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                disabled={isSubmitting}
+                type="submit"
+                className="h-12 rounded-full bg-gradient-to-r from-agro-400 to-sun-500 text-agro-900 font-semibold"
+              >
+                {isSubmitting ? "Sending..." : "Send message"}
+              </motion.button>
+
+              {sent && (
+                <div className="rounded-xl bg-white/10 p-3 text-sm text-white">
+                  Message sent. We’ll contact you soon.
+                </div>
+              )}
+            </form>
           </div>
         </motion.div>
       </div>
     </section>
   );
 }
-
